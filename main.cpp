@@ -1,3 +1,9 @@
+// Metal
+#define NS_PRIVATE_IMPLEMENTATION
+#define CA_PRIVATE_IMPLEMENTATION
+#define MTL_PRIVATE_IMPLEMENTATION
+#include "Metal.hpp"
+// GLFW
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <string>

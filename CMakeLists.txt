@@ -43,5 +43,9 @@ target_link_libraries(
     MetalStudy
     PRIVATE
     #${OPENGL_LIBRARIES}
+    "-framework Cocoa"
+    "-framework Foundation"
+    "-framework Metal"
+    "-framework QuartzCore"
     ${GLFW_LIBRARIES}
 )
