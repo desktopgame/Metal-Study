@@ -3,8 +3,12 @@
 #define CA_PRIVATE_IMPLEMENTATION
 #define MTL_PRIVATE_IMPLEMENTATION
 #include "Metal.hpp"
-// GLFW
-#include <GLFW/glfw3.h>
+// Metal拡張
+#include "CAMetalLayer.hpp"
+#include "CocoaWindow.hpp"
+#include "NSView.hpp"
+#include "NSWindow.hpp"
+// その他標準ライブラリ
 #include <iostream>
 #include <string>
 
@@ -46,8 +50,35 @@ int main(int argc, char *argv[]) {
     return status;
   }
 
+  MTL::Device *device = MTL::CreateSystemDefaultDevice();
+  MTL::CommandQueue *queue = device->newCommandQueue();
+  CA::MetalLayer *layer = CA::MetalLayer::alloc();
+  layer->init();
+  layer->setDevice(device);
+  layer->setOpaque(true);
+  NS::Window *nsWindow =
+      NS::Window::bridgingCast(GLFW::Private::getCocoaWindow(window));
+  NS::View *contentView = nsWindow->getContentView();
+  contentView->setLayer(layer);
+  contentView->setWantsLayer(true);
+
   while (!glfwWindowShouldClose(window)) {
-    glfwSwapBuffers(window);
+    CA::MetalDrawable *surface = layer->nextDrawable();
+
+    MTL::RenderPassDescriptor *pass = MTL::RenderPassDescriptor::alloc();
+    pass->init();
+    MTL::RenderPassColorAttachmentDescriptor *desc =
+        pass->colorAttachments()->object(0);
+    desc->setClearColor(MTL::ClearColor(1.0, 0.0, 0.0, 1.0));
+    desc->setLoadAction(MTL::LoadAction::LoadActionClear);
+    desc->setStoreAction(MTL::StoreAction::StoreActionStore);
+    desc->setTexture(surface->texture());
+
+    MTL::CommandBuffer *buffer = queue->commandBuffer();
+    MTL::RenderCommandEncoder *encoder = buffer->renderCommandEncoder(pass);
+    encoder->endEncoding();
+    buffer->presentDrawable(surface);
+    buffer->commit();
     glfwPollEvents();
   }
   glfwDestroyWindow(window);

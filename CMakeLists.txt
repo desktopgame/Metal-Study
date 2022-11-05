@@ -11,6 +11,10 @@ find_package(GLFW REQUIRED)
 add_executable(
     MetalStudy
     main.cpp
+    CocoaWindow.cpp
+    NSWindow.cpp
+    NSView.cpp
+    CAMetalLayer.cpp
 )
 target_compile_definitions(
     MetalStudy
