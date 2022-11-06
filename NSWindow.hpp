@@ -14,6 +14,6 @@ class View;
 class Window : public Referencing<Window> {
 public:
   static Window *bridgingCast(const void *ptr);
-  class View *getContentView() const;
+  class View *contentView() const;
 };
 } // namespace NS

@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
   layer->setOpaque(true);
   NS::Window *nsWindow =
       NS::Window::bridgingCast(GLFW::Private::getCocoaWindow(window));
-  NS::View *contentView = nsWindow->getContentView();
+  NS::View *contentView = nsWindow->contentView();
   contentView->setLayer(layer);
   contentView->setWantsLayer(true);
 
