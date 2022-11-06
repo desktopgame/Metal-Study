@@ -12,7 +12,7 @@ void MetalLayer::setDevice(const MTL::Device *device) {
 void MetalLayer::setOpaque(bool yes) {
   Object::sendMessage<void>(this, _CA_PRIVATE_SEL(setOpaque_), yes);
 }
-CA::MetalDrawable *MetalLayer::nextDrawable() const {
+CA::MetalDrawable *MetalLayer::nextDrawable() {
   return Object::sendMessage<CA::MetalDrawable *>(
       this, _CA_PRIVATE_SEL(nextDrawable_));
 }

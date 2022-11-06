@@ -18,6 +18,6 @@ public:
   MetalLayer *init();
   void setDevice(const MTL::Device *device);
   void setOpaque(bool yes);
-  CA::MetalDrawable *nextDrawable() const;
+  CA::MetalDrawable *nextDrawable();
 };
 } // namespace CA
