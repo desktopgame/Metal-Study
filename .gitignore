@@ -67,3 +67,5 @@ _deps
 
 
 MetalStudy
+*.air
+*.metallib
