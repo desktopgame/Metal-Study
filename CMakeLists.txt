@@ -7,6 +7,7 @@ project(
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 #find_package(OpenGL REQUIRED)
 find_package(GLFW REQUIRED)
+find_package(GLM REQUIRED)
 
 add_executable(
     MetalStudy
@@ -41,6 +42,7 @@ target_include_directories(
     PRIVATE
     #${OPENGL_INCLUDE_DIR}
     ${GLFW_INCLUDE_DIR}
+    ${GLM_INCLUDE_DIR}
 )
 
 target_link_libraries(
