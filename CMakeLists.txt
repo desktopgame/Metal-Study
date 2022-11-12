@@ -16,6 +16,7 @@ add_executable(
     NSWindow.cpp
     NSView.cpp
     CAMetalLayer.cpp
+    Renderer.cpp
 )
 target_compile_definitions(
     MetalStudy
