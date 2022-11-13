@@ -1,5 +1,4 @@
 #include "ImageIO.hpp"
-//#define FREEIMAGE_COLORORDER FREEIMAGE_COLORORDER_RGB
 #include <FreeImage.h>
 
 // ImageHandle

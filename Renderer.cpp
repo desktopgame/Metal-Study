@@ -143,9 +143,9 @@ void Renderer::initTexture() {
   std::vector<uint8_t> tdata;
   tdata.reserve(width * height * 4);
   for (int i = 0; i < max;) {
-    uint8_t r = bits[i++];
-    uint8_t g = bits[i++];
     uint8_t b = bits[i++];
+    uint8_t g = bits[i++];
+    uint8_t r = bits[i++];
     uint8_t a = 255;
     if (colorType == ImageIO::COLOR_TYPE_A) {
       a = bits[i++];

@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "*.cgi": "python",
+        "ios": "cpp",
+        "__split_buffer": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "vector": "cpp",
+        "*.tcc": "cpp",
+        "queue": "cpp",
+        "stack": "cpp"
+    }
+}
