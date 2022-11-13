@@ -8,6 +8,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 #find_package(OpenGL REQUIRED)
 find_package(GLFW REQUIRED)
 find_package(GLM REQUIRED)
+find_package(FreeImage REQUIRED)
 
 add_executable(
     MetalStudy
@@ -44,6 +45,7 @@ target_include_directories(
     #${OPENGL_INCLUDE_DIR}
     ${GLFW_INCLUDE_DIR}
     ${GLM_INCLUDE_DIR}
+    ${FREEIMAGE_INCLUDE_DIRS}
 )
 
 target_link_libraries(
@@ -55,4 +57,5 @@ target_link_libraries(
     "-framework Metal"
     "-framework QuartzCore"
     ${GLFW_LIBRARIES}
+    ${FREEIMAGE_LIBRARIES}
 )
