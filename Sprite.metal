@@ -4,27 +4,29 @@ using namespace metal;
 
 // Vertex関数が出力するデータの型定義
 typedef struct {
-    // 座標
     float4 position [[position]];
-    // 色
-    float4 color;
+    float2 texcoord;
 } RasterizerData;
 
 vertex RasterizerData vertexShader(
    uint vertexID [[vertex_id]],
-   device const float2 *vertices
+   device const VertexData *vertices
         [[buffer(kShaderVertexInputIndexVertices)]],
    device const CameraData& cameraData
         [[buffer(kShaderVertexInputIndexCamera)]])
 {
+    const device VertexData& vd = vertices[vertexID];
     RasterizerData result = {};
     float4x4 mvp = cameraData.projectionMatrix * cameraData.modelMatrix;
-    result.color = float4(1, 1, 1, 1);
-	result.position = mvp *  float4(vertices[vertexID], 0, 1);
+	result.position = mvp *  float4(vd.position, 0, 1);
+    result.texcoord = vd.texcoord;
     return result;
 }
 
-fragment float4 fragmentShader(RasterizerData in [[stage_in]])
+fragment half4 fragmentShader(
+    RasterizerData in [[stage_in]],
+    texture2d<half, access::sample> tex [[texture(kShaderTexture)]])
 {
-    return in.color;
+    constexpr sampler s(address::repeat, filter::linear);
+    return tex.sample(s, in.texcoord).rgba;
 }
