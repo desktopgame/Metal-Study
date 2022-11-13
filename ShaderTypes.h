@@ -6,7 +6,13 @@
 enum {
   kShaderVertexInputIndexVertices = 0,
   kShaderVertexInputIndexCamera = 1,
+  kShaderTexture = 0,
 };
+
+typedef struct {
+  simd::float2 position;
+  simd::float2 texcoord;
+} VertexData;
 
 typedef struct {
   simd::float4x4 modelMatrix;
