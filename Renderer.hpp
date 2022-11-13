@@ -25,6 +25,7 @@ private:
   void initShader(MTL::RenderPipelineDescriptor *desc, const std::string &file,
                   const std::string &vert, const std::string &frag);
   void initBuffer();
+  void initTexture();
   static NS::String *makeString(const std::string &chars);
   static simd::float4x4 glm2simd(const glm::mat4 &mat);
   MTL::Device *m_device;
@@ -34,5 +35,6 @@ private:
   MTL::Buffer *m_vertexBuffer;
   MTL::Buffer *m_indexBuffer;
   MTL::Buffer *m_cameraBuffer;
+  MTL::Texture *m_texture;
   CA::MetalLayer *m_layer;
 };
