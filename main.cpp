@@ -63,6 +63,7 @@ int main(int argc, char *argv[]) {
   contentView->setWantsLayer(true);
 
   while (!glfwWindowShouldClose(window)) {
+    NS::AutoreleasePool *pool = NS::AutoreleasePool::alloc()->init();
     CA::MetalDrawable *surface = layer->nextDrawable();
 
     MTL::RenderPassDescriptor *pass = MTL::RenderPassDescriptor::alloc();
@@ -80,6 +81,7 @@ int main(int argc, char *argv[]) {
     buffer->presentDrawable(surface);
     buffer->commit();
     glfwPollEvents();
+    pool->release();
   }
   glfwDestroyWindow(window);
   glfwTerminate();
